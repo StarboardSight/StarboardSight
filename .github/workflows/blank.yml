@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous Photographer</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color: #1e1e1e;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        section {
+            width: 80%;
+            margin: 20px 0;
+        }
+        h2 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .gallery img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #333;
+        }
+        .protected {
+            display: none;
+        }
+        .password-protect {
+            margin: 20px 0;
+        }
+        .password-protect input {
+            padding: 10px;
+            font-size: 1em;
+        }
+        .password-protect button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #333;
+            color: #e0e0e0;
+            border: none;
+            cursor: pointer;
+        }
+        footer {
+            background-color: #1e1e1e;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Anonymous Photographer</h1>
+    <p>Photographer and Digital Art wizard in NYC</p>
+</header>
+
+<section>
+    <h2>Photo Gallery</h2>
+    <div class="gallery" id="public-gallery">
+        <!-- Public gallery images will be inserted here -->
+    </div>
+</section>
+
+<section class="password-protect">
+    <h2>Protected Gallery</h2>
+    <input type="password" id="gallery-password" placeholder="Enter password">
+    <button onclick="checkPassword()">Enter</button>
+    <div class="gallery protected" id="protected-gallery">
+        <!-- Protected gallery images will be inserted here -->
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 Anonymous Photographer. All rights reserved.</p>
+</footer>
+
+<script>
+    function loadImages() {
+        const publicGallery = document.getElementById('public-gallery');
+        const protectedGallery = document.getElementById('protected-gallery');
+        const publicImages = ['public1.jpg', 'public2.jpg', 'public3.jpg'];
+        const protectedImages = ['protected1.jpg', 'protected2.jpg', 'protected3.jpg'];
+
+        publicImages.forEach(src => {
+            const img = document.createElement('img');
+            img.src = src;
+            publicGallery.appendChild(img);
+        });
+
+        protectedImages.forEach(src => {
+            const img = document.createElement('img');
+            img.src = src;
+            protectedGallery.appendChild(img);
+        });
+    }
+
+    function checkPassword() {
+        const password = document.getElementById('gallery-password').value;
+        if (password === 'your_password_here') {
+            document.getElementById('protected-gallery').style.display = 'flex';
+        } else {
+            alert('Incorrect password');
+        }
+    }
+
+    window.onload = loadImages;
+</script>
+
+</body>
+</html>
